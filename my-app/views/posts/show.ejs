@@ -1,0 +1,10 @@
+<%- include('../partials/_header') %>
+
+<h1><%= post.title %></h1>
+<p><%= post.content %></p>
+<small><%= post.createdAt %></small>
+
+<a href="/posts/<%= post._id %>/edit">Editar</a>
+<a href="/posts">Voltar</a>
+
+<%- include('../partials/_footer') %>

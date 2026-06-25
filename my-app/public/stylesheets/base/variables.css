@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Caveat Bush";
+    src: url(../../fonts/Caveat-Brush/CaveatBrush-Regular.ttf);
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Archivo Black";
+    src: url(../../fonts/Archivo-Black/ArchivoBlack-Regular.ttf);
+    font-display: swap;
+    font-weight: bold;
+    font-style: normal;
+}
+
+:root {
+    /* Cores utilizadas no site */
+    --background-color: #3b3b3b;
+    --background-gradient-color: rgb(0, 0, 1, 0.3);
+    --text-color: #f0f0f0;
+    --card-color: #b40103;
+
+
+    /* Fontes utilizadas no site */
+    --post-font: "Caveat Bush", sans-serif;
+    --site-logo-font: "Archivo Black", Arial;
+}

@@ -1,21 +1,35 @@
 <%- include('../partials/_header') %>
 
-<h1>Meu Diário</h1>
-<a href="/posts/new">Novo post</a>
-<a href="/auth/logout">Sair</a>
-
-<% posts.forEach(function(post) { %>
-  <div>
-    <h2><%= post.title %></h2>
-    <p><%= post.content %></p>
-    <small><%= post.createdAt %></small>
-
-    <a href="/posts/<%= post._id %>/edit">Editar</a>
-
-    <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline">
-      <button type="submit">Excluir</button>
-    </form>
-  </div>
-<% }); %>
+<main>
+    <header>
+        <h1 class="header-title">Meu Diário</h1>
+        <a class="header-link" href="/posts/new">Novo post</a>
+        <a class="header-link" href="/auth/logout">Sair</a>
+    </header>
+    
+    <section class="diary-posts-display">
+        <% if (posts.length === 0) { %>
+            <h2>Bem Vindo!</h2>
+            <p>Este site foi designado para você, que gosta de escrever diários, mas ele também serve para criar notas avulsas, da forma como preferir.</p>
+        <% } %>
+        <div class="post-container">
+            <% posts.forEach(function(post) { %>
+              <div class="diary-post">
+                <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+                <p><%= post.content %></p>
+                <small><%= post.createdAt %></small>
+            
+                <div class="user-actions">
+                    <a class="action-link" href="/posts/<%= post._id %>/edit">Editar</a>
+                
+                    <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline">
+                      <button class="action-button" type="submit">Excluir</button>
+                    </form>
+                </div>
+              </div>
+            <% }); %>
+        </div>
+    </section>
+</main>
 
 <%- include('../partials/_footer') %>

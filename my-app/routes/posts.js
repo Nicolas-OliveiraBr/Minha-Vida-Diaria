@@ -8,7 +8,7 @@ router.get('/', requireLogin, async function(req, res) {
   try {
     var posts = await Post.find({ author: req.session.userId }).sort({ createdAt: -1 }); // Salva os posts encontrados por um autor em uma variável e os coloca em ordem decrescente (mais novo ao mais antigo)
     console.log(posts); // Debug
-    res.render('posts/index', { posts: posts }); // Mostra na tela de posts as informações que foram guardadas na variável posts
+    res.render('posts/index', { posts: posts , exclusiveCSS: 'posts'}); // Mostra na tela de posts as informações que foram guardadas na variável posts
   } catch (err) {
     console.error(err); // Envia um erro ao terminal
     res.send('Erro ao buscar posts: ' + err.message); // Mostra o erro no navegador
@@ -34,6 +34,22 @@ router.post('/', requireLogin, async function(req, res) {
   } catch (err) {
     console.error(err); // Envia um erro no terminal
     res.send('Erro ao criar post: ' + err.message); // Mostra o erro no navegador
+  }
+});
+
+// Mostra um post específico
+router.get('/:id', requireLogin, async function(req, res) {
+  try {
+    var post = await Post.findById(req.params.id); // Busca o post pelo id
+
+    if (!post || post.author.toString() !== req.session.userId) {
+      return res.send('Post não encontrado ou você não tem permissão.'); // Verificação
+    }
+
+    res.render('posts/show', { post: post }); // Exibe a view 'show' e passa as informações direto para ela
+  } catch (err) {
+    console.error(err);
+    res.send('Erro ao buscar post: ' + err.message);
   }
 });
 

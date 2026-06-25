@@ -1,8 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+@import url('base/variables.css'); /* Importando o arquivo css com as variáveis definidas */
+@import url('layouts/footer.css'); /* Importando o arquivo de layout do footer */
+@import url('layouts/header.css'); /* Importando o arquivo de layout do header */
+@import url('base/reset.css'); /* Importando o arquivo de reset */

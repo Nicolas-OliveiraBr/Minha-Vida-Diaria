@@ -2,5 +2,8 @@
 <html>
   <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% if (locals.exclusiveCSS) { %>
+        <link rel='stylesheet' href='/stylesheets/pages/<%= exclusiveCSS %>.css'
+    <% } %>
   </head>
   <body>
