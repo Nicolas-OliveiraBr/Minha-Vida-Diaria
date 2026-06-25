@@ -1,13 +1,29 @@
+require('dotenv').config();
+var mongoose = require('mongoose'); // importando biblioteca Mongoose
+var session = require('express-session'); // Importando o express-session
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Conexão com o banco de dados, coletando a string connection do arquivo .env
+mongoose.connect(process.env.DB)
+  .then(() => console.log('MongoDB conectado!'))
+  .catch((err) => console.error('Erro ao conectar MongoDB:', err));
+
+// Configuração do sistema de cookies que o site usa para registrar informações do usuário
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
