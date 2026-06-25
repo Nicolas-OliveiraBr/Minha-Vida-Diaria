@@ -1,0 +1,13 @@
+<%- include('../partials/_header') %>
+
+<h1>Novo Post</h1>
+
+<form action="/posts" method="POST">
+  <input type="text" name="title" placeholder="Título" required>
+  <textarea name="content" placeholder="Escreva aqui..." required></textarea>
+  <button type="submit">Salvar</button>
+</form>
+
+<a href="/posts">Voltar</a>
+
+<%- include('../partials/_footer') %>

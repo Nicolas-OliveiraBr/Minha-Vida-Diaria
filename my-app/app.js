@@ -14,11 +14,13 @@ mongoose.connect(process.env.DB)
 
 // Configuração do sistema de cookies que o site usa para registrar informações do usuário
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const postsRouter = require('./routes/posts');
 
 var app = express();
 
+// Configurando algumas propriedades dos cookies utilizados pelo express-session
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -36,7 +38,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,10 +8,9 @@ var userSchema = new mongoose.Schema({
 }, { timestamps: true }); // Cria automaticamente outros atributos (createdAt e updatedAt) que salvam a data de criação/atualização do documento
 
 // Antes de salvar, criptografa a senha automaticamente
-userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
+userSchema.pre('save', async function() {
+  if (!this.isModified('password')) return;
   this.password = await bcrypt.hash(this.password, 10);
-  next();
 });
 
 // Método pra comparar senha digitada com a senha criptografada, usado para identificar se o hash da senha digitada é o mesmo da senha salva no banco de dados

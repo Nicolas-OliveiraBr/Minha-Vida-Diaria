@@ -1,0 +1,21 @@
+<%- include('../partials/_header') %>
+
+<h1>Meu Diário</h1>
+<a href="/posts/new">Novo post</a>
+<a href="/auth/logout">Sair</a>
+
+<% posts.forEach(function(post) { %>
+  <div>
+    <h2><%= post.title %></h2>
+    <p><%= post.content %></p>
+    <small><%= post.createdAt %></small>
+
+    <a href="/posts/<%= post._id %>/edit">Editar</a>
+
+    <form action="/posts/<%= post._id %>/delete" method="POST" style="display:inline">
+      <button type="submit">Excluir</button>
+    </form>
+  </div>
+<% }); %>
+
+<%- include('../partials/_footer') %>

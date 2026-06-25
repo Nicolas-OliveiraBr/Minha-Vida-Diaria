@@ -1,0 +1,12 @@
+<%- include('partials/_header') %>
+
+<form action="/auth/register" method="POST">
+  <input type="text" name="username" placeholder="Usuário" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Senha" required>
+  <button type="submit">Cadastrar</button>
+</form>
+
+<a href="/auth/login">Já tenho conta</a>
+
+<%- include('partials/_footer') %>
